@@ -1,15 +1,13 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const Document = require('./Document');
 
-mongoose.connect(
-  'mongodb+srv://user:user@cluster0.pywvj.mongodb.net/shareDocs?retryWrites=true&w=majority',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-  }
-);
+mongoose.connect(process.env.DB_HOST, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+});
 
 const io = require('socket.io')(3001, {
   cors: {
